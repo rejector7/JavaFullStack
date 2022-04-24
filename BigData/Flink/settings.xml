@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Maven配置profiles同时使用多个镜像仓库-鹞之神乐 https://www.kagura.me/dev/20181005145043.html -->
+
+    <!--注意：mirrorOf千万别为*，建议为profile的id-->
+    <mirrors>
+        <mirror>
+            <id>aliyun-nexus</id>
+            <name>aliyun-nexus</name>
+            <mirrorOf>aliyun</mirrorOf>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </mirror>
+        <mirror>
+            <id>cloudera-repo</id>
+            <name>cloudera-repo</name>
+            <mirrorOf>cloudera</mirrorOf>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </mirror>
+        <mirror>
+            <id>repo1-maven2</id>
+            <name>repo1-maven2</name>
+            <mirrorOf>repo1</mirrorOf>
+            <url>https://repo1.maven.org/maven2/</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+
+        <profile>
+            <id>aliyun</id>
+            <repositories>
+                <repository>
+                    <id>aliyun-nexus</id>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>aliyun-nexus</id>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <profile>
+            <id>cloudera</id>
+            <repositories>
+                <repository>
+                    <id>cloudera-repo</id>
+                    <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>cloudera-repo</id>
+                    <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <profile>
+            <id>repo1</id>
+            <repositories>
+                <repository>
+                    <id>repo1-maven2</id>
+                    <url>https://repo1.maven.org/maven2/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>repo1-maven2</id>
+                    <url>https://repo1.maven.org/maven2/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <profile>
+            <id>jdk1.8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!--设置默认配置文件-->
+    <activeProfiles>
+        <activeProfile>aliyun</activeProfile>
+    </activeProfiles>
+
+</settings>
