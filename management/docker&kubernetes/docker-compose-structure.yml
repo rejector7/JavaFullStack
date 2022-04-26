@@ -4,7 +4,7 @@ services:   # 所有服务
   service_backend:
     build: .  # 使用该目录下的Dockerfile构建的镜像，此处为本目录
     ports:
-      - "80:80" # 主机端口：容器端口
+      - "80:80" # 主机端口：容器端口 使用双引号包裹特殊字符。
       - "${BACKEND_PORT:-80}:80" # 表示命令行启动容器时设置BACKEND_PORT，若不设置，则为默认值80.
     links:  # 表示在容器之间创建网络，进行通信。 links & depends_on 通常只配置一个。
       - service_redis
