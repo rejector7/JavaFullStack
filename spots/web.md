@@ -14,3 +14,8 @@ spring同样支持jersey的结合，当然肯定支持spring mvc。
 **j2ee vs spring**
 
 https://www.zhihu.com/question/268742981/answer/341770209
+
+
+**Jersey @Provider**
+
+https://www.ibm.com/docs/zh/was-zos/8.5.5?topic=formats-implementing-custom-entity
