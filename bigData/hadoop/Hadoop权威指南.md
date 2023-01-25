@@ -59,3 +59,30 @@ AM主要作用以及其中的初始化工作：
 **各实体运行的作业部分**
 
 * client：
+
+### 7.2 失败
+
+失败实体：
+* 任务
+* am
+* nm
+* rm
+一般情况仅考虑任务、am、client失败的情况。
+
+**任务失败**
+1. 用户代码失败
+map/reduce JVM报错 -> am -> map/reduce中的用户日志(user log)
+-> 任务failed，释放资源
+2. JVM本身问题导致退出
+JVM退出 -> NM -> am标记为failed
+3. 任务挂起
+长时间没有进度更新到am -> am标记任务为failed -> 杀死JVM进程
+可能是IO/计算等问题导致处理速度慢。
+
+
+### 7.3 shuffle和排序
+
+配置调优！
+
+* 合并因子
+* reduce复制线程、reduce分区线程
