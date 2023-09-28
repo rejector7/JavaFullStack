@@ -36,3 +36,30 @@
 * namespace：进程视图隔离
 * cGroup：资源限制
 * rootfs：独立根目录
+
+## 第三章 Kubernetes设计与架构
+
+容器：
+* 容器镜像：静态
+* 容器运行时：动态，包括namespace、cGroups。
+
+架构：
+* Master：控制节点
+  * ApiServer
+    * etcd
+  * scheduler
+  * controller-manager
+* Node：计算节点
+  * kubelet：负责和容器运行时交互
+ 
+核心能力：容器编排
+核心设计理念：声明式API
+
+主要从两个方便考虑：
+* 容器间关系：使用各种API对象来处理各种关系，比如访问关系、代理关系。
+  * Pod：紧密协作的单实例（里面可能有多个服务容器）
+  * Deployment：多实例管理
+  * Service：Pod代理/负载均衡
+* 容器运行形态：定时任务、守护进程、单次job等。
+ 
+  
