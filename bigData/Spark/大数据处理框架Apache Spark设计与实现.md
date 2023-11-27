@@ -21,7 +21,7 @@
 * sortByKey
 
 # Spark物理执行计划（Physical plan）
-* 物理计划生成方法
+## 物理计划生成方法
 * action -> 划分job
 * shuffleDependency -> 划分stage
 * 分区 -> 划分task
