@@ -1,0 +1,21 @@
+# 第一章大数据处理框架概览
+## 大数据处理框架的四层结构
+
+# 第二章 应用运行的基本流程
+## Spark应用例子
+
+
+# Spark逻辑处理流程（逻辑计划）
+## Logic Plan生成方法
+### RDD之间的数据依赖关系
+* 窄依赖
+* 宽依赖
+
+## 常用transformation数据操作
+* map
+* filter
+* flatMap
+* partitionBy
+* groupByKey
+* reduceByKey
+* sortByKey
