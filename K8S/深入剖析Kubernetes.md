@@ -1,4 +1,4 @@
-## 第二章容器技术基础
+# 第二章容器技术基础
 核心功能：
 * Cgroups：制造约束，各个进程组所能使用的资源限制，比如cpu、内存、磁盘等
 * Namespace：隔离环境，修改进程视图，比如进程空间（PID）、文件系统（Mount）、网络设备（Network）等
@@ -37,7 +37,7 @@
 * cGroup：资源限制
 * rootfs：独立根目录
 
-## 第三章 Kubernetes设计与架构
+# 第三章 Kubernetes设计与架构
 
 容器：
 * 容器镜像：静态
@@ -61,5 +61,9 @@
   * Deployment：多实例管理
   * Service：Pod代理/负载均衡
 * 容器运行形态：定时任务、守护进程、单次job等。
- 
-  
+
+# 第五章编排原理
+
+## Pod对象
+
+源码：staging/src/k8s.io/api/core/v1/types.go:3537
