@@ -12,13 +12,38 @@
 * 宽依赖
 
 ## 常用transformation数据操作
-* map
-* filter
-* flatMap
+* map & mapValues
+  * 多分区之间无序，分区内部有序（输入有序的情况下）
+* filter & filterByRange
+* flatMap & flatMapValues
+  * 只会展平一层，如有多层需全部展平，需重复调用flatMap
+* sample & sampleByKey
+* mapPartitions & mapPartitionsWithIndex
 * partitionBy
+  * 水平划分 （parallelize默认） 根据元素位置（索引）
+  * HashPartitioner 
+  * RangePartitioner 根据元素大小关系
 * groupByKey
 * reduceByKey
+* aggregateByKey
+* combineByKey
+* foldByKey
+* coGroup/groupWith
+* join
+  * 如join、intersection、distinct等涉及对多个rdd中相同key数据处理的操作，都会产生shuffleDependency
+* cartesian
 * sortByKey
+* coalesce
+* repartition
+* intersection
+* distinct
+* union
+* zip & zipPartitions
+* zipWithIndex & zipWithUniqueId
+* subtractByKey
+* subtract
+* sortBy
+* glom
 
 # Spark物理执行计划（Physical plan）
 ## 物理计划生成方法
