@@ -44,6 +44,25 @@
 * subtract
 * sortBy
 * glom
+  
+## 常用action()数据操作
+transformation和action的区别：
+* 返回类型：RDD & 数值、数据结构
+* 数据收集：分布式 & 大部分要收集到driver（数据量较大时内存可能有较大瓶颈）
+
+* count/countByKey/countByValue
+* collect&collectAsMap
+* foreach&foreachPartitions
+* fold/reduce/aggregate
+  * 和funcByKey的区别是方法针对的数据范围不同：全量和部分数据
+* treeAggregate&treeReduce
+* reduceByKeyLocality
+* take/first/takeOrdered/top
+* max/min
+* isEmpty
+* lookup
+* saveAsTextFile/saveAsObjectFile/saveAsSequenceFile/saveAsHadoopFile
+  
 
 # Spark物理执行计划（Physical plan）
 ## 物理计划生成方法
