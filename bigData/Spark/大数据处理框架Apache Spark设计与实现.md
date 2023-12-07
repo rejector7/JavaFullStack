@@ -69,3 +69,6 @@ transformation和action的区别：
 * action -> 划分job
 * shuffleDependency -> 划分stage
 * 分区 -> 划分task
+
+## 常用数据操作生成的物理执行计划
+根据依赖方式划分stage
