@@ -5,7 +5,7 @@
 ## Spark应用例子
 
 
-# Spark逻辑处理流程（逻辑计划）
+# 第三章 Spark逻辑处理流程（逻辑计划）
 ## Logic Plan生成方法
 ### RDD之间的数据依赖关系
 * 窄依赖
@@ -64,7 +64,7 @@ transformation和action的区别：
 * saveAsTextFile/saveAsObjectFile/saveAsSequenceFile/saveAsHadoopFile
   
 
-# Spark物理执行计划（Physical plan）
+# 第四章 Spark物理执行计划（Physical plan）
 ## 物理计划生成方法
 * action -> 划分job
 * shuffleDependency -> 划分stage
@@ -72,3 +72,48 @@ transformation和action的区别：
 
 ## 常用数据操作生成的物理执行计划
 根据依赖方式划分stage
+
+
+# 第六章 Shuffle机制
+
+## 设计思想
+关键问题：
+* 数据分区
+* 数据聚合
+* sort
+* 内存
+
+## Spark的shuffle框架
+四种需求：
+* write端聚合
+* write端sort
+* read端聚合
+* read端sort
+
+### shuffle write
+map输出 -> 数据聚合 -> 排序 -> 分区
+
+### shuffle read
+数据获取 -> 聚合 -> 排序
+
+## 高效聚合&排序的数据结构
+
+* ExternalAppendOnlyMap：reduce端聚合 + 排序
+  * hash数组 + 二次探测法解冲突
+  * 支持spill
+  * 数组快排
+* PartitionedAppendOnlyMap：map端聚合 + 排序
+* PartitionedPairBuffer：map/reduce端排序
+  * 添加partitionId排序
+  * 支持spill
+ 
+## hadoop mapreduce & spark 的shuffle对比
+
+spark优势：
+* 不需要强制排序，也支持map端partition内部排序
+* 支持在线聚合，减少数据量，mr使用独立阶段聚合
+
+spark劣势
+* reducer聚合不够灵活，必须在线聚合，无法对整个list做处理
+* 同等情况下spark一般需要更高的内存来缓存中间结果，从而达到更高的性能（也是优势）
+
