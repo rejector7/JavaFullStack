@@ -1,6 +1,7 @@
 ### 通配符&泛型
-源码参考：
+**源码参考：**
 java.util.Comparator#comparing(java.util.function.Function<? super T,? extends U>)
+
 
 通配符 ? 和泛型在 Java 中都涉及到类型的灵活性和代码的复用性。下面是它们的区别和共同点以及为什么它们被设计以及它们的作用：
 
