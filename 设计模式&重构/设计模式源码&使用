@@ -1,0 +1,47 @@
+## 工厂方法&抽象工厂
+
+### hadoop 序列化框架
+* SerializationFactor 工厂方法
+* Serialization 抽象工厂
+  * JavaSerialization、WritableSerialization 具体工厂
+  * serializer、deserializer 产品族
+
+### hadoop 压缩框架
+* CompressionCodecFactory 工厂方法
+* CompressionCodeC 抽象工厂
+  * GzipCompressionCodeC、SnappyCompressionCodeC：具体工厂
+  * createOutputStream、createInputStream 产品族
+
+
+## 代理&动态代理
+
+**静态代理&动态代理**
+* 是否有具体的类文件，编译时已经有&运行时才生成。
+* 类加载是从类文件中读取字节流，还是在运行时生成的类字节流中读取。
+
+要理解动态代理，首先要了解代理，以及动态的概念。
+动态仅针对类生成的方式，而不是类的个数或方法的个数。
+只不过动态代理能够解决多类/多方法时静态代理的繁琐。
+注意区分定义和优势。
+
+### RPC实现
+
+* jdk动态代理框架
+需要关注以下三个接口/对象
+  * 代理对象
+  * 被代理/目标对象
+  * InvocationHandler
+
+jdk rpc框架
+  * 针对一个或多个rpc接口，有多个实际的rpc接口实现类。通过注解自动生成rpc接口的代理对象。实际工作方式如下：
+  * 通过newProxyInstance（运行时生成类）生成代理对象，对代理对象的调用，都会调用InvocationHandler的invoke，进而转发到rpc接口实现类调用方法。
+  * InvocationHandler的invoke可以屏蔽rpc方法远程调用的细节，比如网络通信等。不同接口、方法共享一个远程调用实现。
+
+
+* cglib动态代理（第三方库，未了解）
+
+* grpc框架
+  * 直接给每个接口生成类文件，属于静态代理。
+
+### AOP功能
+通过动态代理，生成代理类，实现切面编程。
