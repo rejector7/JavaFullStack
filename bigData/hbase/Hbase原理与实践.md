@@ -24,6 +24,20 @@
 
 # 2. 基础数据结构与算法
 
+* 一个列簇 = 一个LSM树
+  * 内存部分 + 磁盘部分：memStore + HFile
+    * 内存部分：SkipList：并发性能好。CRUD都是LogN
+    * 磁盘部分：多个有序KV的HFile文件。
+    * 每一条数据是一个KV，存储的是操作记录（通过type标识操作类型），而不仅是数据。所以才叫做LSM，存储日志而不仅是数据。
+    * 写优化：随机写通过memStore改为顺序写HFile。
+    * 读优化：Compaction，布隆过滤器
+  * 布隆过滤器：假阳真阴
+
+* Compaction
+  * 大量HFile，影响读性能，定期Compaction
+    * major compaction：全局合并
+    * minor compaction：局部合并
+
 # 3. Hbase依赖服务
 
 # 4. Hbase客户端
