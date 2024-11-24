@@ -37,9 +37,24 @@
     * 负责协调分区分配
   * consumer：ConsumerCoordinator
     * 心跳检测
+    * version：
   * 二者交互决定分配。
 
 ### 7.3 __consumer_offsets剖析
 
 * 每个集群都有一个__consumer_offsets topic
 * 不同消费组的消费位移提交到不同的__consumer_offsets broker中，该broker同时也是GroupCoordinator所在的节点。
+
+### 7.4 事务
+消息中间件保障等级：
+* at most once
+* at least once
+* exactly once
+
+Kafka保障：at least once
+
+这种一致性协议，通常涉及几个思路：
+* 重试
+* sequenceId（versionId）
+  * 每个消息：<Pid, SequenceId>，确保在broker端对partition重复消息去重。
+* 粗粒度事务
