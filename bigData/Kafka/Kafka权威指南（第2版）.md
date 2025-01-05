@@ -30,4 +30,4 @@
 * 功能设计：zk和controller功能重合。Kraft将所有管理功能整合到controller。
 * 重启运维性能：zk方式，控制器重启需要从zk获取所有元数据，容易有瓶颈。Kraft主从控制器，随时热切。
 
-业务上。Kraft当broker数量较多（超过400），会产生cpu瓶颈和带宽瓶颈。
+业务上，常见运维场景（扩缩容，重启等）下，当broker数量较多（超过400），Kraft controller也会产生cpu瓶颈和带宽瓶颈。
